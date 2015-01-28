@@ -18,7 +18,14 @@ window.onload = function () {
     canvas.height = w_height;
 
     curSeconds = getcurSeconds();
-    render(context);
+    //render(context);
+    setInterval(
+        function () {
+            render(context);
+            update();
+        },
+        50
+    );
 };
 
 function getcurSeconds() {
@@ -29,20 +36,43 @@ function getcurSeconds() {
     return ret >= 0? ret : 0;
 }
 
+function update() {
+
+    var nextShowTime = getcurSeconds();
+
+    var next_Day =  parseInt(nextShowTime / (3600 * 24));
+    var next_Lv1 = nextShowTime % (24 * 3600);
+    var next_Hours = parseInt(next_Lv1 / 3600);
+    var next_Lv2 = next_Lv1 % 3600;
+    var next_Minutes = parseInt(next_Lv2 / 60);
+    var next_Lv3 = next_Lv2 % 60;
+    var next_Seconds =  parseInt(next_Lv3);
+
+    var cur_Day =  parseInt(curSeconds / (3600 * 24));
+    var cur_Lv1 = curSeconds % (24 * 3600);
+    var cur_Hours = parseInt(cur_Lv1 / 3600);
+    var cur_Lv2 = cur_Lv1 % 3600;
+    var cur_Minutes = parseInt(cur_Lv2 / 60);
+    var cur_Lv3 = cur_Lv2 % 60;
+    var cur_Seconds =  parseInt(cur_Lv3);
+
+    if(next_Seconds != cur_Seconds){
+
+        curSeconds = nextShowTime;
+    }
+}
+
 function render(cxt) {
 
-    var day =  parseInt(curSeconds / (3600 * 24));
+    cxt.clearRect(0,0,w_width,w_height);
 
+    var day =  parseInt(curSeconds / (3600 * 24));
     var lv1 = curSeconds % (24 * 3600);
     var hours = parseInt(lv1 / 3600);
-
     var lv2 = lv1 % 3600;
     var minutes = parseInt(lv2 / 60);
-
     var lv3 = lv2 % 60;
     var seconds =  parseInt(lv3);
-
-     console.log(hours,minutes,seconds);
 
     renderDigit( mg_left, mg_top, parseInt(day/10), cxt);
     renderDigit( mg_left + 15*(w_radius + 1), mg_top, parseInt(day%10), cxt);
