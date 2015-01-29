@@ -9,11 +9,21 @@
 <title>Document</title>
 <link rel="stylesheet" href=""/>
     <style>
-        #cvs{margin:0 auto; display:block;}
+        html{
+            height: 100%;
+        }
+        body{
+            height: 100%;
+        }
+        #cvs {
+            margin: 0 auto;
+            height: 100%;
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <canvas id="cvs"></canvas>
+    <canvas id="cvs" style="height: 100%;"></canvas>
 </body>
 <script>
     (function (doc, win) {
