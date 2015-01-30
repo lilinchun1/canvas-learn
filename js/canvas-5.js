@@ -29,7 +29,10 @@ window.onload = function () {
 
     context.save();
 
-    context.transform(2, 0, 0.6, 2, 0, 0);
+    context.transform(1.5, 0.3, 0.2, 1.2, 100, 50);
+
+
+
     context.fillRect(50, 50, 300, 300);
     context.strokeRect(50, 50, 300, 300);
 

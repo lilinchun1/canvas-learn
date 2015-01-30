@@ -7,11 +7,15 @@ window.onload = function () {
     var canvas = document.getElementById("cvs");
     var context = canvas.getContext("2d");
 
-    canvas.width = 800;
+    canvas.width = 1200;
     canvas.height = 800;
 
     //漫天繁星
-    context.fillStyle = "black";
+    /*var skyBg = context.createLinearGradient(0, 0, 0, canvas.height);*/
+    var skyBg = context.createRadialGradient(canvas.width/2,canvas.height,0, canvas.width/2,canvas.height,canvas.height);
+    skyBg.addColorStop(0.0, "#035");
+    skyBg.addColorStop(1.0, "#000");
+    context.fillStyle = skyBg;
     context.fillRect(0,0,canvas.width,canvas.height);
 
     /*for(var i = 0; i < 200; i++){
@@ -22,9 +26,9 @@ window.onload = function () {
         dwStar(context, r, r/2.0, x, y ,a);
     }*/
     for(var i = 0; i < 200; i++){
-        var r = Math.random() * 10 + 10;
+        var r = Math.random() * 5 + 5;
         var x = Math.random() * canvas.width;
-        var y = Math.random() * canvas.height;
+        var y = Math.random() * canvas.height * 0.65;
         var a = Math.random() * 360;
         dwStar(context, x, y, r, a);
     }
