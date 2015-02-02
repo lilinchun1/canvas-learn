@@ -31,7 +31,8 @@ function pathMoon(cxt, d) {
     cxt.beginPath();
     cxt.arc(0, 0, 1, 0.5 * Math.PI, 1.5 * Math.PI, true);
     cxt.moveTo(0, -1);
-    cxt.arcTo(d, 0, 0, 1, dis(0, -1, d, 0) / d);
+    //cxt.arcTo(d, 0, 0, 1, dis(0, -1, d, 0) / d);
+    cxt.quadraticCurveTo(1.4, 0 ,0, 1);
     cxt.closePath();
 
 }
