@@ -33,6 +33,8 @@ window.onload = function () {
         dwStar(context, x, y, r, a);
     }
 
+    fillMoon(context, 2, 800, 200, 100, 0);
+
 };
 
 /*
@@ -53,6 +55,7 @@ function dwStar(cxt, r, R, x, y, rot) {
     cxt.stroke();
 
 }*/
+
 
 function dwStar(cxt, x, y, R, rot){
 
@@ -85,5 +88,35 @@ function starPath(cxt) {
         cxt.lineTo( Math.cos((54 + i * 72) / 180 * Math.PI) * 0.5, -Math.sin((54 + i * 72) / 180 * Math.PI) * 0.5);
     }
     cxt.closePath();
+
+}
+
+//绘制月亮
+
+function fillMoon(cxt, d, x, y, R, rot, /*optional*/fillColor) {
+
+    cxt.save();
+    cxt.translate(x, y);
+    cxt.rotate(rot * Math.PI / 180);
+    cxt.scale(R, R);
+    pathMoon(cxt, d);
+    cxt.fillStyle = fillColor || "#fb5";
+    cxt.fill();
+    cxt.restore();
+
+}
+
+function pathMoon(cxt, d) {
+
+    cxt.beginPath();
+    cxt.arc(0, 0, 1, 0.5 * Math.PI, 1.5 * Math.PI, true);
+    cxt.moveTo(0, -1);
+    cxt.arcTo(d, 0, 0, 1, dis(0, -1, d, 0) / d);
+    cxt.closePath();
+
+}
+function dis(x1, y1, x2, y2) {
+
+    return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 
 }
