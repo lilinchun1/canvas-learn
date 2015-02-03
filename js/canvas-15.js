@@ -19,6 +19,9 @@ window.onload = function () {
     context.textBaseline = "bottom";
     context.fillText("textalign = left", 400, 200);
     a(context, 200);
+
+    var textWidth = context.measureText("daljsdlfcjsfvcs").width;
+    console.log(textWidth);
 };
 
 function a(cxt, h) {
